@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <notificationRecipient key="recipient.teams" name="Cisco Webex Teams Bot Recipient" class="net.cimbalek.bamboo.plugin.webexteamsnotifications.impl.TeamsBotNotificationRecipient" weight="40">
+    <description>Recipient delivering notification as Bot to Webex Teams API</description>
+    <resource type="freemarker" name="edit" location="templates/teamsBotRecipientEdit.ftl"/>
+    <resource type="freemarker" name="view" location="templates/teamsBotRecipientView.ftl"/>
+  </notificationRecipient>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="WebexTeamsNotifications"/>
+  <!-- add our web resources -->
+  <web-resource key="WebexTeamsNotifications-resources" name="WebexTeamsNotifications Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="WebexTeamsNotifications.css" location="/css/WebexTeamsNotifications.css"/>
+    <resource type="download" name="WebexTeamsNotifications.js" location="/js/WebexTeamsNotifications.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>WebexTeamsNotifications</context>
+  </web-resource>
+  <!--<resource namePattern="recipient.teams" type="http://developer.atlassian.com/docs" location="C:\G\bamboo-webex-notification-plugin\WebexTeamsNotifications\src\main\resources\WebexTeamsNotifications.properties"/>-->
+</atlassian-plugin>
